@@ -1,0 +1,5 @@
+.idea
+dataset
+annotations
+kaggle.json
+iwildcam-resnet50.ipynb
