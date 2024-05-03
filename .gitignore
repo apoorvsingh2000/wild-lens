@@ -4,3 +4,6 @@ annotations
 kaggle.json
 iwildcam-resnet50.ipynb
 iwildcam-2020-fgvc7/
+iwildcam-2020-fgvc7.zip
+*.sbatch
+.ipynb_checkpoints/
