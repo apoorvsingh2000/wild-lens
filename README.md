@@ -20,5 +20,5 @@ This project aims to develop an innovative algorithm for detecting and classifyi
 3. Train the model
 
     ```angular2html
-   python train_model.py --start 0 --num-epochs 25 --batch-size 64 --model-name "vit_full"
+   python train_model.py --start 0 --num-epochs 25 --batch-size 64 --save-every 5 --model-name vit_full
    ```

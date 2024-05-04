@@ -35,6 +35,7 @@ TRAIN_DF, VAL_DF = train_test_split(DF[['file_name', 'category_id']], test_size=
 NUM_EPOCHS = 25
 START_EPOCH = 0
 BATCH_SIZE = 64
+SAVE_EVERY = 5
 
 # Datasets
 train_dataset = ImageDataset(TRAIN_DF, TRAIN_IMGS_DIR, n_classes=NUM_CLASSES, label_dict=CLASSMAP,
@@ -146,7 +147,7 @@ def train(model, start=0, num_epochs=10):
         print(f'Epoch [{epoch}/{num_epochs}], Loss: {val_loss:.4f}')
 
         # Save the best model every 10 epochs
-        if epoch % 5 == 0:
+        if epoch % SAVE_EVERY == 0:
             if val_loss < best_loss:
                 best_loss = val_loss
 
@@ -206,6 +207,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Train Model for 25 Epoch")
     parser.add_argument("--start", type=int, default=START_EPOCH, help="Starting index epoch")
     parser.add_argument("--num-epochs", type=int, default=NUM_EPOCHS, help="Number of epochs")
+    parser.add_argument("--save-every", type=int, default=SAVE_EVERY, help="Save every N epochs")
     parser.add_argument("--batch-size", type=int, default=BATCH_SIZE, help="Batch size")
     parser.add_argument("--model-name", type=str, default="vit_full", help="Model directory name")
     args = parser.parse_args()
