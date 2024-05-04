@@ -43,10 +43,8 @@ val_dataset = ImageDataset(VAL_DF, TRAIN_IMGS_DIR, n_classes=NUM_CLASSES, label_
                            transforms=TRANSFORMATIONS)
 
 # Dataloaders
-train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=os.cpu_count(),
-                              pin_memory=True)
-val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=os.cpu_count(),
-                            pin_memory=True)
+train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
+val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
 # Loss Calculator
 criterion = torch.nn.CrossEntropyLoss()
