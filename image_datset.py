@@ -33,7 +33,11 @@ class ImageDataset(Dataset):
 
     @staticmethod
     def check_validity(file_path):
-        return os.path.isfile(file_path)
+        try:
+            Image.open(file_path)
+            return os.path.isfile(file_path)
+        except:
+            return False
 
     def remove_invalid_rows(self):
         self.df['is_valid'] = self.df['image_path'].apply(ImageDataset.check_validity)
