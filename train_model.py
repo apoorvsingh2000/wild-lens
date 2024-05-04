@@ -216,6 +216,7 @@ if __name__ == '__main__':
     print(f"Validation Dataset Size: {len(val_dataset)}")
 
     BATCH_SIZE = args.batch_size
+    SAVE_EVERY = args.save_every
     BEST_MODEL_DIR = f'./models/{args.model_name}'
 
     # select model
