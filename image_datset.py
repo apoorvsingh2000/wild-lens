@@ -42,14 +42,14 @@ class ImageDataset(Dataset):
 
     def add_columns(self):
         self.df['image_path'] = self.df['file_name'].apply(
-            lambda x: self.images_dir + '/' + x + '.jpg')
+            lambda x: self.images_dir + '/' + x)
 
     def __len__(self):
         return len(self.df)
 
     def __getitem__(self, idx):
         cur_idx_row = self.df.iloc[idx]
-        img_id = cur_idx_row['image_id']
+        img_id = cur_idx_row['file_name']
         img_path = cur_idx_row['image_path']
 
         img = Image.open(img_path)
