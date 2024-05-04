@@ -8,3 +8,4 @@ iwildcam-2020-fgvc7.zip
 *.sbatch
 .ipynb_checkpoints/
 wild-lens.csv
+__pycache__/
