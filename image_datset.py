@@ -31,20 +31,6 @@ class ImageDataset(Dataset):
         self.label_dict = label_dict
         self.has_answer = has_answer
         self.transforms = transforms
-        self.remove_invalid_rows()
-
-    @staticmethod
-    def check_validity(file_path):
-        try:
-            Image.open(file_path)
-            return os.path.isfile(file_path)
-        except:
-            return False
-
-    def remove_invalid_rows(self):
-        self.df['is_valid'] = self.df['image_path'].apply(ImageDataset.check_validity)
-        self.df = self.df[self.df['is_valid']]
-        self.df = self.df.drop(columns=['is_valid'])
 
     def add_columns(self):
         self.df['image_path'] = self.df['file_name'].apply(
