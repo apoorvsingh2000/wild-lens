@@ -1,5 +1,6 @@
 import argparse
 import os
+from tqdm import tqdm
 
 import pandas as pd
 import torch
@@ -58,8 +59,9 @@ def calculate_validation_loss(model, val_loader):
     num_samples = 0
 
     with torch.no_grad():
-        for images, labels in val_loader:
+        for images, labels in tqdm(val_loader):
             # Forward Pass
+            images, labels = images.to(device), labels.to(device)
             outputs = model(images)
             loss = criterion(outputs, labels)
 
@@ -116,7 +118,7 @@ def train(model, start=0, num_epochs=10):
         total_train_loss = 0.0
         num_train_samples = 0
         model.train()
-        for images, labels in train_dataloader:
+        for images, labels in tqdm(train_dataloader):
             # Forward Pass
             images, labels = images.to(device), labels.to(device)
 
