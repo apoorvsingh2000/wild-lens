@@ -7,7 +7,6 @@ from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from torchvision.models import vit_b_16, ViT_B_16_Weights
-from tqdm import tqdm
 
 from image_datset import ImageDataset
 
@@ -55,7 +54,7 @@ def calculate_validation_loss(model, val_loader):
     num_samples = 0
 
     with torch.no_grad():
-        for images, labels in tqdm(val_loader):
+        for images, labels in val_loader:
             # Forward Pass
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
@@ -118,7 +117,7 @@ def train(model, start=0, num_epochs=10):
         total_train_loss = 0.0
         num_train_samples = 0
         model.train()
-        for images, labels in tqdm(train_dataloader):
+        for images, labels in train_dataloader:
             # Forward Pass
             images, labels = images.to(device), labels.to(device)
 
