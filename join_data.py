@@ -1,16 +1,20 @@
 import json
 import os
 import time
+
 import pandas as pd
-from PIL import Image, ImageFile
+from PIL import ImageFile
+
 from corrupted_files import CORRUPTED_FILES
 
 ImageFile.LOAD_TRUNCATED = True
 
 IMAGE_DIR = './iwildcam-2020-fgvc7/train'
 
+
 def check_validity(file_path):
     return os.path.isfile(file_path)
+
 
 def main():
     with open('./iwildcam-2020-fgvc7/iwildcam2020_train_annotations.json') as f:
@@ -24,7 +28,7 @@ def main():
 
         # Validations
         df = df[~df['file_name'].isin(CORRUPTED_FILES)]
-        
+
         df['image_path'] = df['file_name'].apply(lambda x: IMAGE_DIR + '/' + x)
         df['is_valid'] = df['image_path'].apply(check_validity)
         df = df[df['is_valid']]
