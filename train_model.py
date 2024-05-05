@@ -45,10 +45,6 @@ train_dataset = ImageDataset(TRAIN_DF, TRAIN_IMGS_DIR, n_classes=NUM_CLASSES, la
 val_dataset = ImageDataset(VAL_DF, TRAIN_IMGS_DIR, n_classes=NUM_CLASSES, label_dict=CLASSMAP,
                            transforms=TRANSFORMATIONS)
 
-# Dataloaders
-train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
-val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
-
 # Loss Calculator
 criterion = torch.nn.CrossEntropyLoss()
 
@@ -73,6 +69,11 @@ def calculate_validation_loss(model, val_loader):
 
 
 def train(model, start=0, num_epochs=10):
+    
+    # Dataloaders
+    train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
+    val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
+    
     # Model
     model = model.to(device)
 
