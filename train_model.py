@@ -1,6 +1,5 @@
 import argparse
 import os
-from tqdm import tqdm
 
 import pandas as pd
 import torch
@@ -8,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from torchvision.models import vit_b_16, ViT_B_16_Weights
+from tqdm import tqdm
 
 from image_datset import ImageDataset
 
