@@ -69,11 +69,10 @@ def calculate_validation_loss(model, val_loader):
 
 
 def train(model, start=0, num_epochs=10):
-    
     # Dataloaders
     train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
     val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
-    
+
     # Model
     model = model.to(device)
 
