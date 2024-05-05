@@ -32,6 +32,7 @@ TRAIN_IMGS_DIR = './iwildcam-2020-fgvc7/train'
 TRAIN_DF, VAL_DF = train_test_split(DF[['file_name', 'category_id']], test_size=0.2, random_state=42, shuffle=True)
 
 # Training Parameters
+NUM_WORKERS = 16
 NUM_EPOCHS = 25
 START_EPOCH = 0
 BATCH_SIZE = 64
@@ -44,8 +45,8 @@ val_dataset = ImageDataset(VAL_DF, TRAIN_IMGS_DIR, n_classes=NUM_CLASSES, label_
                            transforms=TRANSFORMATIONS)
 
 # Dataloaders
-train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
-val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
+train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
+val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
 
 # Loss Calculator
 criterion = torch.nn.CrossEntropyLoss()
@@ -207,6 +208,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Train Model for 25 Epoch")
     parser.add_argument("--start", type=int, default=START_EPOCH, help="Starting index epoch")
     parser.add_argument("--num-epochs", type=int, default=NUM_EPOCHS, help="Number of epochs")
+    parser.add_argument("--num-workers", type=int, default=NUM_WORKERS, help="Number of threads used by dataloader")
     parser.add_argument("--save-every", type=int, default=SAVE_EVERY, help="Save every N epochs")
     parser.add_argument("--batch-size", type=int, default=BATCH_SIZE, help="Batch size")
     parser.add_argument("--model-name", type=str, default="vit_full", help="Model directory name")
@@ -217,6 +219,7 @@ if __name__ == '__main__':
 
     BATCH_SIZE = args.batch_size
     NUM_EPOCHS = args.num_epochs
+    NUM_WORKERS = args.num_workers
     SAVE_EVERY = args.save_every
     BEST_MODEL_DIR = f'./models/{args.model_name}'
 
