@@ -3,9 +3,9 @@ import os
 import torch
 from PIL import Image, ImageFile
 from torch.utils.data import Dataset
+from corrupted_files import CORRUPTED_FILES
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
-
 
 class ImageDataset(Dataset):
 
@@ -31,10 +31,14 @@ class ImageDataset(Dataset):
         self.label_dict = label_dict
         self.has_answer = has_answer
         self.transforms = transforms
+        self.deleteRows()
 
     def add_columns(self):
         self.df['image_path'] = self.df['file_name'].apply(
             lambda x: self.images_dir + '/' + x)
+    
+    def deleteRows(self):
+        self.df = self.df[~self.df['file_name'].isin(CORRUPTED_FILES)]
 
     def __len__(self):
         return len(self.df)
