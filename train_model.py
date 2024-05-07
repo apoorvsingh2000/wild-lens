@@ -95,7 +95,7 @@ def train(model, start=0, num_epochs=10):
         checkpoint = torch.load(checkpoint_path)
         start = checkpoint['epoch']
         model.load_state_dict(checkpoint['model_state_dict'])
-        optimizer = torch.optim.AdamW(checkpoint['optimizer_state_dict'])
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         lr_scheduler.load_state_dict(checkpoint['lr_scheduler_state_dict'])
         train_loss = checkpoint['train_loss']
         print(f'Loaded checkpoint at epoch {start}')
