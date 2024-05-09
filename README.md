@@ -1,4 +1,4 @@
-# WildLens: WildLens: Wildlife Detection & Classification
+# WildLens: Wildlife Detection & Classification
 
 ## Summary:
 Comparative Analysis of DenseNet and Vision Transformers for Wildlife Image Classification.
