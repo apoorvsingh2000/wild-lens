@@ -31,7 +31,7 @@ Ensure you have the following installed:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/WildLens.git](https://github.com/apoorvsingh2000/wild-lens.git
+   git clone https://github.com/rishavroy97/wild-lens.git
    cd wild-lens
    
 2. **Install the required libraries:**
