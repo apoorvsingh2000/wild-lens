@@ -10,3 +10,4 @@ wild-lens.csv
 __pycache__/
 *.out
 models/
+checkpoints/
