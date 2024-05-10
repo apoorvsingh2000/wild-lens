@@ -102,7 +102,7 @@ def generate_confusion_matrix(model):
 
     df_cm = pd.DataFrame(cf_matrix, index=headers, columns=headers)
 
-    df_cm.to_csv(f'{MODEL_NAME}_confusion_matrix.csv', index=False)
+    df_cm.to_csv(f'{MODEL_NAME}_confusion_matrix.csv')
 
 
 if __name__ == "__main__":
