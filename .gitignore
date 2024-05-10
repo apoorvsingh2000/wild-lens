@@ -9,3 +9,4 @@ iwildcam-2020-fgvc7.zip
 wild-lens.csv
 __pycache__/
 *.out
+models/
